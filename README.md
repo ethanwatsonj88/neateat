@@ -1,3 +1,6 @@
+<a href="https://docs.google.com/document/d/1UUx5bj2yxFjQs5JljJmoP0b1MuhT7DuEi34fE4P3Dj8/edit?usp=sharing">
+Link to Google Doc
+</a>
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.org">
