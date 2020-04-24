@@ -31,23 +31,24 @@ module.exports = {
     // The name of the plugin
     resolve: 'gatsby-source-mongodb',
     options: {
+        // Name of the database and collection where are books reside
         dbName: 'gatsby',
         collection: 'users',
-        // server: {
-        //  address: 'main-shard-00-01-zxsxp.mongodb.net',
-        //    port: 27017
-        //},
+        server: {
+            address: 'cluster0-shard-00-01-mhtd2.mongodb.net',
+            port: 27017
+        },
         auth: {
             user: 'neateat',
             password: 'yumYelpYum'
         },
-        // extraParams: {
-        //  replicaSet: 'Main-shard-0',
-        //  ssl: true,
-        //  authSource: 'admin',
-        //  retryWrites: true
-        // }
+        extraParams: {
+            replicaSet: 'Cluster0',
+            ssl: true,
+            authSource: 'admin',
+            retryWrites: true
+        }
       }
-    },
+    },      
   ],
 }
