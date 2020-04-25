@@ -12,6 +12,7 @@ const IndexPage = (props) => {
     <Layout>
     <SEO title="Home" />
     <div className="users-container">
+    <h2>Current Users</h2>
     {users.map(user =>
           <div className="user" key={user.node.id}>
               <Link to={'/user/' + user.node.id}>
