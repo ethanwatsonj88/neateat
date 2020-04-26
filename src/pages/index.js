@@ -8,6 +8,7 @@ import SEO from "../components/seo"
 
 const IndexPage = (props) => {
   const users = props.data.allMongodbGatsbyUsers.edges;
+  const meals = props.data.allMongodbGatsbyMeals.edges;
   return (
     <Layout>
     <SEO title="Home" />
@@ -17,6 +18,16 @@ const IndexPage = (props) => {
           <div className="user" key={user.node.id}>
               <Link to={'/user/' + user.node.id}>
                   <h2>{user.node.username}</h2>
+              </Link>
+          </div>
+      )}
+    </div>
+    <div className="meals-container">
+    <h2>Meals</h2>
+    {meals.map(meal =>
+          <div className="meal" key={meal.node.id}>
+              <Link to={'/meal/' + meal.node.id}>
+                  <h2>{meal.node.type}</h2>
               </Link>
           </div>
       )}
@@ -34,6 +45,14 @@ export const pageQuery = graphql`
         node {
           id,
           username
+        }
+      }
+    },
+    allMongodbGatsbyMeals {
+      edges {
+        node {
+          id,
+          type
         }
       }
     }

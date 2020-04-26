@@ -1,4 +1,3 @@
-//for api
 const path = require('path')
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -6,6 +5,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const { data } = await graphql(`
     {
+      meals: allMongodbGatsbyMeals {
+        edges {
+          node {
+            id
+          }
+        }
+      },
       users: allMongodbGatsbyUsers {
         edges {
           node {
@@ -16,12 +22,24 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `)
 
-  const pageTemplate = path.resolve('./src/components/user.js')
+  const userTemplate = path.resolve('./src/components/user.js')
 
   for (const { node } of data.users.edges) {
     createPage({
       path: `/user/${node.id}/`,
-      component: pageTemplate,
+      component: userTemplate,
+      context: {
+        id: node.id,
+      },
+    })
+  }
+  
+  const mealTemplate = path.resolve('./src/components/meal.js')
+
+  for (const { node } of data.meals.edges) {
+    createPage({
+      path: `/meal/${node.id}/`,
+      component: mealTemplate,
       context: {
         id: node.id,
       },

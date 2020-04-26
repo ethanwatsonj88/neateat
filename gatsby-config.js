@@ -33,7 +33,7 @@ module.exports = {
     options: {
         // Name of the database and collection where are books reside
         dbName: 'gatsby',
-        collection: 'users',
+        collection: ['users', 'meals'],
         server: {
             address: 'cluster0-shard-00-01-mhtd2.mongodb.net',
             port: 27017
