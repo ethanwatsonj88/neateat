@@ -1,21 +1,41 @@
 import React from "react"
 import { Link } from "gatsby"
+import { graphql } from "gatsby" // links our database
 
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = (props) => {
+  const users = props.data.allMongodbGatsbyUsers.edges;
+  return (
+    <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+    <div className="users-container">
+    <h2>Current Users</h2>
+    {users.map(user =>
+          <div className="user" key={user.node.id}>
+              <Link to={'/user/' + user.node.id}>
+                  <h2>{user.node.username}</h2>
+              </Link>
+          </div>
+      )}
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
-)
+  )
+}
 
 export default IndexPage
+
+export const pageQuery = graphql`
+  query {
+    allMongodbGatsbyUsers {
+      edges {
+        node {
+          id,
+          username
+        }
+      }
+    }
+  }
+`

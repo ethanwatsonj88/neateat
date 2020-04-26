@@ -25,6 +25,8 @@ const Layout = ({ children }) => {
 
   return (
     <>
+    { /* fonts */ }
+    <link rel="stylesheet" href="https://use.typekit.net/qqm7hic.css"/>
       <Header siteTitle={data.site.siteMetadata.title} />
       <div
         style={{
